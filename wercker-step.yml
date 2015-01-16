@@ -1,3 +1,3 @@
-name: bitbucket-upload-asset
+name: bitbucket-upload-asset-wildcard
 version: 0.0.1
-description: Upload files to you bitbucket repo downloads
+description: Upload files to you bitbucket repo downloads folder, you can use wildcards in 'file' parameter, e.g. target/*.war 

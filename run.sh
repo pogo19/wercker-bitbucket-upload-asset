@@ -42,8 +42,10 @@ fi
 
   # now that we're logged-in and at the right page, upload whatever you want to your repository...
   # echo "actual upload progress should appear right now as a progress bar, be patient:"
-  echo "uploading file: $WERCKER_BITBUCKET_UPLOAD_ASSET_FILE"
-  curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null --referer "https://bitbucket.org/$pge" -L --form csrfmiddlewaretoken=$csrf --form token= --form file=@"$WERCKER_BITBUCKET_UPLOAD_ASSET_FILE" https://bitbucket.org/$pge
+  for FILENAME in $WERCKER_BITBUCKET_UPLOAD_ASSET_FILE; do
+  echo "uploading file: $FILENAME"
+    curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null --referer "https://bitbucket.org/$pge" -L --form csrfmiddlewaretoken=$csrf --form token= --form file=@"$FILENAME" https://bitbucket.org/$pge
+  done
 
   echo "done? maybe. *crosses fingers* signing out, closing session!"
   curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null -L https://bitbucket.org/account/signout/
