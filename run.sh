@@ -1,14 +1,14 @@
-if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_USERNAME" ]; then
+if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_USERNAME" ]; then
   error 'Please specify username property'
   exit 1
 fi
 
-if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_PASSWORD" ]; then
+if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_PASSWORD" ]; then
   error 'Please specify password property'
   exit 1
 fi
 
-if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_FILE" ]; then
+if [ ! -n "$WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_FILE" ]; then
   error 'Please specify file property'
   exit 1
 fi
@@ -25,7 +25,7 @@ pge=$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/downloads
   
   # and login using POST, to get the final session cookies, then redirect it to the right page
   # echo "signing in with the credentials provided:"
-  curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null -d "username=$WERCKER_BITBUCKET_UPLOAD_ASSET_USERNAME&password=$WERCKER_BITBUCKET_UPLOAD_ASSET_PASSWORD&submit=&next=$pge&csrfmiddlewaretoken=$csrf" --referer "https://bitbucket.org/account/signin/" -L https://bitbucket.org/account/signin/
+  curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null -d "username=$WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_USERNAME&password=$WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_PASSWORD&submit=&next=$pge&csrfmiddlewaretoken=$csrf" --referer "https://bitbucket.org/account/signin/" -L https://bitbucket.org/account/signin/
   
   csrf=$(grep csrf cookies.txt); set $csrf; csrf=$7;
   
@@ -42,7 +42,7 @@ fi
 
   # now that we're logged-in and at the right page, upload whatever you want to your repository...
   # echo "actual upload progress should appear right now as a progress bar, be patient:"
-  for FILENAME in $WERCKER_BITBUCKET_UPLOAD_ASSET_FILE; do
+  for FILENAME in $WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_FILE; do
   echo "uploading file: $FILENAME"
     curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null --referer "https://bitbucket.org/$pge" -L --form csrfmiddlewaretoken=$csrf --form token= --form file=@"$FILENAME" https://bitbucket.org/$pge
   done
