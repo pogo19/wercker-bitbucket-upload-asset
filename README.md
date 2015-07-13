@@ -6,7 +6,7 @@ Allows wildcards in 'file' parameter, e.g. target/*.war.
 
 Use in your `wercker.yml` in this way:
     steps:
-        - pogo/bitbucket-upload-asset-wildcard@0.0.2:
+        - pogo/bitbucket-upload-asset-wildcard@0.0.3:
             username: ${BITBUCKET_USERNAME}
             password: ${BITBUCKET_PASSWORD}
             file: target/*.war

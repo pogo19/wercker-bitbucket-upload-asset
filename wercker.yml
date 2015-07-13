@@ -1,4 +1,4 @@
-box: wercker/default
+box: speg03/curl
 build:
   steps:
     - validate-wercker-step
