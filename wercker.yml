@@ -1,4 +1,4 @@
-box: node
+box: nodesource/node
 build:
   steps:
     - validate-wercker-step
