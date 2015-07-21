@@ -44,7 +44,7 @@ fi
   # echo "actual upload progress should appear right now as a progress bar, be patient:"
   for FILENAME in $WERCKER_BITBUCKET_UPLOAD_ASSET_WILDCARD_FILE; do
   echo "uploading file: $FILENAME"
-    curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null --referer "https://bitbucket.org/$pge" -L --form csrfmiddlewaretoken=$csrf --form token= --form file=@"$FILENAME" https://bitbucket.org/$pge
+    curl -k -c cookies.txt -b cookies.txt --progress-bar -o /dev/null --referer "https://bitbucket.org/$pge" -L --form csrfmiddlewaretoken=$csrf --form token= --form files=@"$FILENAME" https://bitbucket.org/$pge
   done
 
   echo "done? maybe. *crosses fingers* signing out, closing session!"
