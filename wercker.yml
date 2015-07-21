@@ -1,4 +1,4 @@
-box: pogo/java7-oracle-curl
+box: yutaadachi/ubuntu14.04-ansible1.6@1.0.2
 build:
   steps:
     - validate-wercker-step
