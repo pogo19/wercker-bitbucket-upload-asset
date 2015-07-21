@@ -1,4 +1,4 @@
-box: speg03/curl
+box: pogo/java7-oracle-curl
 build:
   steps:
     - validate-wercker-step
